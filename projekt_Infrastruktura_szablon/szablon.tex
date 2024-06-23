@@ -1,0 +1,57 @@
+% **** Szablon pracy magisterskiej, licencjackiej lub inżynierskiej ****
+
+\documentclass[polish,12pt,twoside,a4paper]{report}
+
+\input{style.tex}
+
+%definicja przydatnych poleceń
+\newcommand{\wydzial}{KOLEGIUM INFORMATYKI STOSOWANEJ}
+\newcommand{\kierunek}{Kierunek: INFORMATYKA}
+\newcommand{\specjalnosc}{Grupa: 4IIZ/2022/IoT SP03}
+\newcommand{\autor}{Michał Ziobro}
+\newcommand{\autordwa}{Arkadiusz Swatek}
+\newcommand{\autortrzy}{Filip Walat}
+\newcommand{\album}{Nr albumu w11111}
+\newcommand{\albumdwa}{Nr albumu w22222}
+\newcommand{\albumtrzy}{Nr albumu w67204}
+\newcommand{\temat}{Infrastruktura sieci IoT}
+\newcommand{\promotor}{dr inż. John Strong}
+\newcommand{\typpracy}{Projekt}
+\newcommand{\miasto}{Rzeszów}
+\newcommand{\rok}{2024}
+
+\begin{document}
+
+% *************** Włączenie definicji pierwszych stron ***************
+\input{front.tex}
+
+
+% *************** Część główna pracy ***************
+\input{wstep.tex}
+\addcontentsline{toc}{chapter}{Wstęp}
+\newpage
+\input{R1.tex}
+\newpage
+\input{R2.tex}
+\newpage
+\input{R3.tex}
+\newpage
+
+% *************** Bibliografia ***************
+\begin{thebibliography}{6}
+\addcontentsline{toc}{chapter}{Bibliografia}
+%dodanie wpisu do spisu bibliograficznego
+
+\bibitem{www-1} http://www.potaroo.net/tools/ipv4/ z dnia 8.12.2018
+\bibitem{www-2} http://bgp.potaroo.net/iso3166/v6dcc.html z dnia 8.12.2018
+
+\bibitem{etykieta1}Autorzy1, {\it Tytuł1}, Wydawnictwo1, Miasto1 Rok1.
+\bibitem{etykieta2}Autorzy2, {\it Tytuł2}, Wydawnictwo2, Miasto2 Rok2.
+\bibitem{etykieta3}Autorzy3, {\it Tytuł3}, Wydawnictwo3, Miasto3 Rok3.
+\bibitem{etykieta4}Autorzy4, {\it Tytuł4}, Wydawnictwo4, Miasto4 Rok4.
+\end{thebibliography}
+\newpage
+
+
+\end{document}
+% *************** Koniec pliku szablon.tex ***************

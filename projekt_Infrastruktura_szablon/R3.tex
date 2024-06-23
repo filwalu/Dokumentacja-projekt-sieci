@@ -1,0 +1,414 @@
+% ********** Rozdział 3 **********
+\chapter{Opis Zastosowanych Technologii}
+
+\section{VLAN (Virtual Local Area Network)}
+
+VLAN (Virtual Local Area Network) to technologia umożliwiająca logiczne segmentowanie sieci na mniejsze części, co poprawia zarządzanie, bezpieczeństwo i wydajność. W obecnej topologii sieciowej VLAN-y są używane do separacji różnych działów, takich jak administracja, programiści, menedżerowie, ochrona, monitoring, serwery i goście.
+
+\subsection{Zalety}
+\begin{itemize}
+    \item Poprawa bezpieczeństwa poprzez segmentację sieci. 
+    \begin{itemize}
+        \item Separacja ruchu sieciowego: Dzięki VLAN-om ruch sieciowy z jednego działu (np. administracji) jest oddzielony od ruchu z innych działów (np. programistów). To oznacza, że nawet jeśli jeden dział zostanie zainfekowany złośliwym oprogramowaniem, inne działy pozostaną bezpieczne.
+        \item Kontrola dostępu: VLAN-y umożliwiają bardziej precyzyjną kontrolę dostępu do zasobów sieciowych. Na przykład, pracownicy administracji mogą mieć dostęp do zasobów, do których programiści nie mają dostępu, co zwiększa bezpieczeństwo danych.
+    \end{itemize}
+    \item Redukcja ruchu broadcastowego. 
+    \begin{itemize}
+        \item Ograniczenie zasięgu broadcastu: W tradycyjnej sieci, komunikaty typu broadcast są przesyłane do wszystkich urządzeń. Dzięki VLAN-om, broadcasty są ograniczone tylko do urządzeń w tym samym VLAN-ie. To zmniejsza ilość niepotrzebnego ruchu sieciowego i poprawia wydajność.
+        \item Poprawa wydajności sieci: Mniej broadcastów oznacza mniej zakłóceń dla urządzeń w sieci, co prowadzi do lepszej wydajności i szybszej komunikacji między urządzeniami.
+    \end{itemize}
+    \item Lepsze zarządzanie siecią.
+    \begin{itemize}
+        \item Łatwiejsza administracja: VLAN-y pozwalają na logiczne grupowanie urządzeń, co ułatwia zarządzanie siecią. Administratorzy mogą łatwo przypisywać urządzenia do odpowiednich VLAN-ów i zarządzać politykami sieciowymi.
+        \item Skalowalność: Sieć z VLAN-ami jest bardziej skalowalna, ponieważ nowe urządzenia mogą być łatwo dodawane do odpowiednich VLAN-ów bez konieczności zmian w fizycznej topologii sieci.
+    \end{itemize}
+    \item Ułatwienie zarządzania politykami sieciowymi.
+    \begin{itemize}
+        \item Centralizacja kontroli: Dzięki VLAN-om, polityki sieciowe mogą być łatwiej wdrażane i zarządzane z jednego centralnego punktu. Na przykład, polityki bezpieczeństwa mogą być stosowane tylko do określonych VLAN-ów.
+        \item Elastyczność: Administratorzy mają większą elastyczność w konfigurowaniu reguł dostępu, priorytetów ruchu i innych ustawień sieciowych w zależności od potrzeb poszczególnych działów.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Wady}
+\begin{itemize}
+    \item Złożoność konfiguracji i zarządzania.
+    \begin{itemize}
+        \item Potrzebna wiedza specjalistyczna: Konfiguracja VLAN-ów wymaga wiedzy na temat sieci i doświadczenia w pracy z przełącznikami sieciowymi. Błędy w konfiguracji mogą prowadzić do problemów z dostępnością sieci.
+        \item Utrzymanie i aktualizacje: Utrzymanie VLAN-ów i wprowadzanie zmian w konfiguracji mogą być czasochłonne, szczególnie w dużych sieciach.
+    \end{itemize}
+    \item Potrzeba wsparcia ze strony urządzeń sieciowych.
+    \begin{itemize}
+        \item Kompatybilność sprzętu: Wszystkie przełączniki i routery w sieci muszą obsługiwać VLAN-y, co może wymagać modernizacji starszego sprzętu.
+        \item Koszty: Zakup nowego sprzętu, który obsługuje VLAN-y, może być kosztowny, szczególnie w dużych sieciach.
+    \end{itemize}
+    \item Możliwość błędnej konfiguracji prowadząca do problemów z dostępnością sieci.
+    \begin{itemize}
+        \item Ryzyko błędów: Nieprawidłowa konfiguracja VLAN-ów może prowadzić do problemów z komunikacją między urządzeniami, co może skutkować przestojami w pracy sieci.
+        \item Trudności w diagnostyce: Diagnostyka problemów związanych z VLAN-ami może być skomplikowana i czasochłonna, co może opóźniać rozwiązanie problemów sieciowych.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Zastosowanie w Topologii}
+W obecnej topologii VLAN-y są używane do separacji ruchu sieciowego między różnymi działami firmy. Dzięki temu każdy dział działa w oddzielnej przestrzeni, co zwiększa bezpieczeństwo i wydajność sieci. Na przykład, VLAN 10 jest przypisany do administracji, VLAN 20 do programistów, a VLAN 30 do menedżerów, co pozwala na lepsze zarządzanie zasobami sieciowymi i kontrolę dostępu.
+
+\section{Spanning-Tree Protocol (STP)}
+
+Spanning-Tree Protocol (STP) to protokół zapobiegający powstawaniu pętli w sieciach z redundancją połączeń. STP automatycznie wykrywa i blokuje redundantne ścieżki, utrzymując jednocześnie dostępność sieci.
+
+\subsection{Zalety}
+\begin{itemize}
+    \item Zapobieganie powstawaniu pętli w sieci.
+    \begin{itemize}
+        \item Eliminacja pętli: Pętle w sieci mogą powodować nadmierne przesyłanie tych samych pakietów, co prowadzi do zakłóceń i obciążeń sieci. STP wykrywa i eliminuje pętle, utrzymując sieć stabilną.
+        \item Stabilność sieci: Dzięki eliminacji pętli, STP zapewnia stabilność i niezawodność sieci, co jest kluczowe dla utrzymania ciągłości działania.
+    \end{itemize}
+    \item Automatyczne przywracanie ścieżek w przypadku awarii.
+    \begin{itemize}
+        \item Redundancja połączeń: STP pozwala na tworzenie redundantnych połączeń, które są automatycznie aktywowane w przypadku awarii głównej ścieżki. To zapewnia ciągłość działania sieci.
+        \item Szybka reakcja: STP szybko reaguje na zmiany w topologii sieci, automatycznie przełączając ruch na alternatywne ścieżki, co minimalizuje przerwy w działaniu.
+    \end{itemize}
+    \item Poprawa niezawodności sieci.
+    \begin{itemize}
+        \item Redukcja ryzyka przestojów: Dzięki STP, ryzyko przestojów w sieci jest znacznie mniejsze, ponieważ protokół automatycznie zarządza połączeniami i eliminuje pętle.
+        \item Lepsze zarządzanie: STP umożliwia lepsze zarządzanie połączeniami sieciowymi, co prowadzi do bardziej przewidywalnego i stabilnego działania sieci.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Wady}
+\begin{itemize}
+    \item Opóźnienia w konwergencji sieci.
+    \begin{itemize}
+        \item Czas konwergencji: Proces konwergencji STP, podczas którego sieć dostosowuje się do zmian topologii, może trwać kilka sekund do minut, co może prowadzić do krótkich przestojów.
+        \item Wpływ na wydajność: Dłuższy czas konwergencji może wpływać na wydajność sieci, szczególnie w przypadku częstych zmian topologii.
+    \end{itemize}
+    \item Złożoność konfiguracji.
+    \begin{itemize}
+        \item Zaawansowane ustawienia: Konfiguracja STP wymaga zaawansowanej wiedzy na temat sieci, co może być wyzwaniem dla mniej doświadczonych administratorów.
+        \item Potencjalne błędy: Błędna konfiguracja STP może prowadzić do problemów z dostępnością sieci i trudności w diagnostyce.
+    \end{itemize}
+    \item Możliwość nieprawidłowej konfiguracji prowadzącej do problemów z dostępnością sieci.
+    \begin{itemize}
+        \item Ryzyko pętli: Nieprawidłowa konfiguracja STP może prowadzić do powstania pętli w sieci, co może powodować poważne problemy z dostępnością i wydajnością sieci.
+        \item Trudności w diagnostyce: Problemy związane z nieprawidłową konfiguracją STP mogą być trudne do zdiagnozowania i naprawienia, co może wydłużać czas przestoju.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Zastosowanie w Topologii}
+W obecnej topologii STP jest używany na przełącznikach, aby zapobiec powstawaniu pętli i zapewnić redundancję połączeń. Dzięki temu sieć jest bardziej niezawodna, a ewentualne awarie są automatycznie wykrywane i naprawiane. STP umożliwia tworzenie redundantnych połączeń między przełącznikami, co zapewnia ciągłość działania sieci nawet w przypadku awarii jednego z połączeń.
+
+\section{PortFast}
+
+PortFast to funkcja Spanning-Tree Protocol, która umożliwia szybkie aktywowanie portów przełączników podłączonych do końcowych urządzeń sieciowych. Dzięki temu urządzenia końcowe mogą szybciej uzyskać połączenie z siecią.
+
+\subsection{Zalety}
+\begin{itemize}
+    \item Szybsze połączenie urządzeń końcowych z siecią.
+    \begin{itemize}
+        \item Skrócony czas aktywacji portu: PortFast omija standardowy proces STP, który może trwać do 50 sekund, co pozwala na natychmiastowe aktywowanie portu. Dzięki temu urządzenia końcowe szybciej uzyskują połączenie z siecią.
+        \item Poprawa doświadczenia użytkownika: Szybsze połączenie z siecią oznacza, że użytkownicy nie muszą długo czekać na dostęp do zasobów sieciowych po podłączeniu swoich urządzeń.
+    \end{itemize}
+    \item Zmniejszenie opóźnień przy uruchamianiu urządzeń.
+    \begin{itemize}
+        \item Szybszy dostęp do zasobów: Urządzenia końcowe, takie jak komputery i drukarki, mogą szybciej uzyskać dostęp do sieci i zasobów sieciowych, co poprawia wydajność pracy.
+        \item Ułatwienie diagnostyki: Dzięki szybszemu uruchamianiu urządzeń, administratorzy sieci mogą szybciej zdiagnozować i rozwiązać ewentualne problemy z połączeniem.
+    \end{itemize}
+    \item Ułatwienie konfiguracji sieci dla urządzeń końcowych.
+    \begin{itemize}
+        \item Prostsza konfiguracja: PortFast umożliwia łatwiejszą konfigurację portów przełączników dla urządzeń końcowych, co redukuje złożoność zarządzania siecią.
+        \item Redukcja błędów: Dzięki prostszej konfiguracji, ryzyko popełnienia błędów jest mniejsze, co prowadzi do bardziej stabilnej i niezawodnej sieci.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Wady}
+\begin{itemize}
+    \item Potencjalne ryzyko pętli sieciowych, jeśli PortFast zostanie błędnie skonfigurowany na portach trunk.
+    \begin{itemize}
+        \item Ryzyko pętli: Jeśli PortFast zostanie przypadkowo włączony na portach trunk, może to prowadzić do powstania pętli w sieci, co może powodować poważne problemy z dostępnością i wydajnością sieci.
+        \item Trudności w diagnostyce: Problemy związane z błędną konfiguracją PortFast mogą być trudne do zdiagnozowania i naprawienia, co może wydłużać czas przestoju.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Zastosowanie w Topologii}
+W obecnej topologii PortFast jest używany na portach przełączników podłączonych do komputerów i innych urządzeń końcowych. Dzięki temu urządzenia te mogą szybciej uzyskać dostęp do sieci. PortFast jest skonfigurowany tylko na portach, które są bezpośrednio podłączone do urządzeń końcowych, aby uniknąć ryzyka pętli sieciowych.
+
+\section{Trunking}
+
+Trunking to technologia umożliwiająca przesyłanie ruchu sieciowego z wielu VLAN-ów przez jedno połączenie między przełącznikami. Trunking jest używany do łączenia przełączników w celu zapewnienia komunikacji między różnymi VLAN-ami.
+
+\subsection{Zalety}
+\begin{itemize}
+    \item Efektywne wykorzystanie połączeń między przełącznikami.
+    \begin{itemize}
+        \item Większa przepustowość: Trunking pozwala na przesyłanie ruchu z wielu VLAN-ów przez jedno połączenie, co zwiększa efektywność wykorzystania dostępnych zasobów sieciowych.
+        \item Zmniejszenie liczby połączeń: Dzięki trunkingowi można zmniejszyć liczbę fizycznych połączeń między przełącznikami, co upraszcza topologię sieci.
+    \end{itemize}
+    \item Umożliwienie komunikacji między różnymi VLAN-ami.
+    \begin{itemize}
+        \item Elastyczność: Trunking umożliwia łatwą komunikację między VLAN-ami, co jest kluczowe dla aplikacji i usług wymagających dostępu do wielu segmentów sieci.
+        \item Centralizacja zasobów: Dzięki trunkingowi można centralizować zasoby, takie jak serwery i urządzenia sieciowe, co upraszcza zarządzanie i poprawia wydajność.
+    \end{itemize}
+    \item Skalowalność i łatwość zarządzania.
+    \begin{itemize}
+        \item Łatwa rozbudowa: Trunking ułatwia rozbudowę sieci, ponieważ nowe VLAN-y mogą być dodawane bez konieczności zmiany fizycznej topologii.
+        \item Prostsze zarządzanie: Zarządzanie połączeniami trunkowymi jest prostsze i bardziej efektywne niż zarządzanie wieloma pojedynczymi połączeniami między VLAN-ami.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Wady}
+\begin{itemize}
+    \item Złożoność konfiguracji.
+    \begin{itemize}
+        \item Wymagana wiedza: Konfiguracja trunkingu wymaga zaawansowanej wiedzy na temat sieci i VLAN-ów, co może być wyzwaniem dla mniej doświadczonych administratorów.
+        \item Możliwość błędów: Błędna konfiguracja trunkingu może prowadzić do problemów z dostępnością i wydajnością sieci, co może być trudne do zdiagnozowania.
+    \end{itemize}
+    \item Możliwość błędnej konfiguracji prowadząca do problemów z dostępnością sieci.
+    \begin{itemize}
+        \item Ryzyko przerw w działaniu: Nieprawidłowa konfiguracja trunkingu może prowadzić do przerw w działaniu sieci, co może mieć poważne konsekwencje dla działalności biznesowej.
+        \item Trudności w diagnostyce: Problemy związane z trunkingiem mogą być trudne do zdiagnozowania i naprawienia, co może wydłużać czas przestoju.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Zastosowanie w Topologii}
+W obecnej topologii trunking jest używany do łączenia przełączników, co umożliwia przesyłanie ruchu z wielu VLAN-ów przez jedno połączenie. Dzięki temu sieć jest bardziej efektywna i łatwiejsza w zarządzaniu. Trunking pozwala na centralizację zasobów sieciowych i ułatwia komunikację między różnymi segmentami sieci.
+
+\section{EtherChannel}
+
+EtherChannel to technologia umożliwiająca połączenie kilku fizycznych łączy w jedno logiczne łącze w celu zwiększenia przepustowości i zapewnienia redundancji. EtherChannel jest używany na przełącznikach do łączenia wielu portów.
+
+\subsection{Zalety}
+\begin{itemize}
+    \item Zwiększenie przepustowości połączeń.
+    \begin{itemize}
+        \item Większa przepustowość: EtherChannel łączy kilka fizycznych łączy w jedno logiczne łącze, co zwiększa przepustowość i pozwala na przesyłanie większej ilości danych.
+        \item Lepsze wykorzystanie zasobów: Dzięki EtherChannel, sieć może efektywniej wykorzystywać dostępne zasoby, co prowadzi do lepszej wydajności.
+    \end{itemize}
+    \item Redundancja i większa niezawodność.
+    \begin{itemize}
+        \item Redundancja połączeń: EtherChannel zapewnia redundancję, co oznacza, że w przypadku awarii jednego łącza, pozostałe łącza nadal działają, zapewniając ciągłość działania sieci.
+        \item Poprawa niezawodności: Dzięki redundancji, sieć jest bardziej niezawodna i mniej podatna na awarie, co jest kluczowe dla utrzymania ciągłości działania.
+    \end{itemize}
+    \item Łatwiejsze zarządzanie połączeniami.
+    \begin{itemize}
+        \item Prostsza konfiguracja: EtherChannel upraszcza zarządzanie połączeniami sieciowymi, ponieważ administratorzy muszą zarządzać jednym logicznym łączem zamiast kilku fizycznych.
+        \item Elastyczność: EtherChannel umożliwia łatwe dodawanie i usuwanie fizycznych łączy bez wpływu na działanie logicznego łącza, co ułatwia zarządzanie i rozbudowę sieci.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Wady}
+\begin{itemize}
+    \item Złożoność konfiguracji.
+    \begin{itemize}
+        \item Wymagana wiedza: Konfiguracja EtherChannel wymaga zaawansowanej wiedzy na temat sieci, co może być wyzwaniem dla mniej doświadczonych administratorów.
+        \item Możliwość błędów: Błędna konfiguracja EtherChannel może prowadzić do problemów z dostępnością i wydajnością sieci, co może być trudne do zdiagnozowania.
+    \end{itemize}
+    \item Potencjalne problemy z kompatybilnością.
+    \begin{itemize}
+        \item Kompatybilność sprzętu: Wszystkie przełączniki i routery muszą obsługiwać EtherChannel, co może wymagać modernizacji starszego sprzętu.
+        \item Koszty: Zakup nowego sprzętu, który obsługuje EtherChannel, może być kosztowny, szczególnie w dużych sieciach.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Zastosowanie w Topologii}
+W obecnej topologii EtherChannel jest używany do łączenia przełączników w celu zwiększenia przepustowości i zapewnienia redundancji połączeń. Dzięki temu sieć jest bardziej wydajna i niezawodna. EtherChannel pozwala na łączenie wielu fizycznych łączy w jedno logiczne łącze, co poprawia przepustowość i niezawodność sieci.
+
+\section{OSPF (Open Shortest Path First)}
+
+OSPF (Open Shortest Path First) to protokół routingu używany do znajdowania najkrótszych ścieżek w sieci IP. OSPF jest stosowany w dużych sieciach, gdzie dynamiczne trasowanie jest kluczowe dla utrzymania wydajności.
+
+\subsection{Zalety}
+\begin{itemize}
+    \item Szybka konwergencja.
+    \begin{itemize}
+        \item Krótszy czas konwergencji: OSPF szybko dostosowuje się do zmian w topologii sieci, co minimalizuje czas przestoju i zapewnia ciągłość działania sieci.
+        \item Zwiększona niezawodność: Szybka konwergencja OSPF oznacza, że sieć jest bardziej niezawodna i mniej podatna na awarie.
+    \end{itemize}
+    \item Skalowalność i wsparcie dla dużych sieci.
+    \begin{itemize}
+        \item Obsługa dużych sieci: OSPF jest zaprojektowany do pracy w dużych sieciach, co czyni go idealnym rozwiązaniem dla korporacji i dostawców usług internetowych.
+        \item Hierarchiczna struktura: OSPF wykorzystuje hierarchiczną strukturę z obszarami, co ułatwia zarządzanie i skalowanie sieci.
+    \end{itemize}
+    \item Wykorzystanie metryk do znajdowania optymalnych tras.
+    \begin{itemize}
+        \item Metryki kosztów: OSPF wykorzystuje metryki kosztów do oceny i wyboru optymalnych tras, co zapewnia efektywne wykorzystanie zasobów sieciowych.
+        \item Dynamiczne trasowanie: Dzięki dynamicznemu trasowaniu, OSPF automatycznie dostosowuje trasy w zależności od zmieniających się warunków sieciowych.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Wady}
+\begin{itemize}
+    \item Złożoność konfiguracji.
+    \begin{itemize}
+        \item Wymagana wiedza: Konfiguracja OSPF wymaga zaawansowanej wiedzy na temat sieci, co może być wyzwaniem dla mniej doświadczonych administratorów.
+        \item Możliwość błędów: Błędna konfiguracja OSPF może prowadzić do problemów z dostępnością i wydajnością sieci, co może być trudne do zdiagnozowania.
+    \end{itemize}
+    \item Wymagania dotyczące zasobów sprzętowych.
+    \begin{itemize}
+        \item Wymagania sprzętowe: OSPF może wymagać więcej zasobów sprzętowych niż inne protokoły routingu, co może zwiększać koszty.
+        \item Koszty operacyjne: Utrzymanie sieci opartej na OSPF może być bardziej kosztowne ze względu na wymagania dotyczące zasobów i zarządzania.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Zastosowanie w Topologii}
+W obecnej topologii OSPF jest używany do dynamicznego trasowania w sieci. Dzięki temu sieć może szybko dostosowywać się do zmian i znajdować optymalne trasy dla przesyłanych danych. OSPF zapewnia skalowalność i niezawodność, co jest kluczowe dla dużych sieci korporacyjnych.
+
+\section{HSRP (Hot Standby Router Protocol)}
+
+HSRP (Hot Standby Router Protocol) to protokół zapewniający wysoką dostępność poprzez umożliwienie skonfigurowania grupy routerów jako zapasowych dla siebie nawzajem. W przypadku awarii głównego routera, zapasowy router przejmuje jego funkcje.
+
+\subsection{Zalety}
+\begin{itemize}
+    \item Zapewnienie wysokiej dostępności.
+    \begin{itemize}
+        \item Redundancja: HSRP zapewnia redundancję, co oznacza, że w przypadku awarii głównego routera, zapasowy router automatycznie przejmuje jego funkcje, zapewniając ciągłość działania sieci.
+        \item Zmniejszenie przestojów: Dzięki HSRP, ryzyko przestojów w sieci jest znacznie mniejsze, co jest kluczowe dla utrzymania ciągłości działania.
+    \end{itemize}
+    \item Automatyczne przełączanie w przypadku awarii.
+    \begin{itemize}
+        \item Szybka reakcja: HSRP automatycznie przełącza ruch na zapasowy router w przypadku awarii głównego routera, co minimalizuje przerwy w działaniu sieci.
+        \item Prostsze zarządzanie: Automatyczne przełączanie zmniejsza konieczność ręcznego zarządzania awariami, co ułatwia pracę administratorów sieci.
+    \end{itemize}
+    \item Łatwość konfiguracji.
+    \begin{itemize}
+        \item Prosta konfiguracja: Konfiguracja HSRP jest stosunkowo prosta i nie wymaga zaawansowanej wiedzy, co ułatwia wdrożenie tej technologii w sieci.
+        \item Dokumentacja i wsparcie: HSRP jest dobrze udokumentowany i szeroko wspierany przez producentów sprzętu, co ułatwia jego konfigurację i zarządzanie.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Wady}
+\begin{itemize}
+    \item Dodatkowe wymagania dotyczące sprzętu.
+    \begin{itemize}
+        \item Koszty sprzętu: Konfiguracja HSRP wymaga dodatkowego sprzętu (zapasowych routerów), co może zwiększać koszty.
+        \item Zasoby sieciowe: HSRP może zwiększać zapotrzebowanie na zasoby sieciowe, co może prowadzić do wyższych kosztów operacyjnych.
+    \end{itemize}
+    \item Możliwość problemów z synchronizacją.
+    \begin{itemize}
+        \item Problemy z synchronizacją: Synchronizacja stanów między głównym a zapasowym routerem może czasami sprawiać problemy, co może wpływać na niezawodność sieci.
+        \item Trudności w diagnostyce: Problemy z synchronizacją mogą być trudne do zdiagnozowania i naprawienia, co może wydłużać czas przestoju.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Zastosowanie w Topologii}
+W obecnej topologii HSRP jest używany do zapewnienia wysokiej dostępności routerów. Dzięki temu w przypadku awarii głównego routera, zapasowy router automatycznie przejmuje jego funkcje, zapewniając ciągłość działania sieci. HSRP jest skonfigurowany na routerach, aby zapewnić redundancję i minimalizować ryzyko przestojów.
+
+\section{Routing Między VLAN-ami}
+
+Routing między VLAN-ami umożliwia komunikację między różnymi VLAN-ami w sieci. Jest to realizowane za pomocą routerów lub przełączników warstwy 3.
+
+\subsection{Zalety}
+\begin{itemize}
+    \item Umożliwienie komunikacji między różnymi segmentami sieci.
+    \begin{itemize}
+        \item Łatwiejsza komunikacja: Routing między VLAN-ami umożliwia łatwą komunikację między różnymi segmentami sieci, co jest kluczowe dla aplikacji i usług wymagających dostępu do wielu VLAN-ów.
+        \item Centralizacja zasobów: Dzięki routingowi między VLAN-ami można centralizować zasoby, takie jak serwery i urządzenia sieciowe, co upraszcza zarządzanie i poprawia wydajność.
+    \end{itemize}
+    \item Centralizacja zarządzania politykami sieciowymi.
+    \begin{itemize}
+        \item Prostsze zarządzanie: Routing między VLAN-ami umożliwia centralne zarządzanie politykami sieciowymi, co ułatwia wdrażanie i egzekwowanie zasad bezpieczeństwa.
+        \item Skuteczniejsza kontrola: Dzięki centralizacji, administratorzy mają lepszą kontrolę nad dostępem do zasobów sieciowych i mogą łatwiej monitorować ruch sieciowy.
+    \end{itemize}
+    \item Poprawa bezpieczeństwa i kontroli dostępu.
+    \begin{itemize}
+        \item Precyzyjna kontrola dostępu: Routing między VLAN-ami umożliwia dokładniejszą kontrolę dostępu do zasobów sieciowych, co zwiększa bezpieczeństwo danych.
+        \item Izolacja ruchu: Dzięki izolacji ruchu między VLAN-ami, można lepiej chronić dane przed nieautoryzowanym dostępem i złośliwym oprogramowaniem.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Wady}
+\begin{itemize}
+    \item Złożoność konfiguracji.
+    \begin{itemize}
+        \item Wymagana wiedza: Konfiguracja routingu między VLAN-ami wymaga zaawansowanej wiedzy na temat sieci, co może być wyzwaniem dla mniej doświadczonych administratorów.
+        \item Możliwość błędów: Błędna konfiguracja routingu między VLAN-ami może prowadzić do problemów z dostępnością i wydajnością sieci, co może być trudne do zdiagnozowania.
+    \end{itemize}
+    \item Wymagania dotyczące sprzętu.
+    \begin{itemize}
+        \item Koszty sprzętu: Routing między VLAN-ami wymaga routerów lub przełączników warstwy 3, co może zwiększać koszty sprzętu.
+        \item Zasoby sieciowe: Routing między VLAN-ami może zwiększać zapotrzebowanie na zasoby sieciowe, co może prowadzić do wyższych kosztów operacyjnych.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Zastosowanie w Topologii}
+W obecnej topologii routing między VLAN-ami jest realizowany przez routery, które umożliwiają komunikację między różnymi VLAN-ami, zapewniając jednocześnie bezpieczeństwo i kontrolę dostępu. Dzięki temu sieć może efektywnie zarządzać ruchem między różnymi segmentami, poprawiając wydajność i bezpieczeństwo.
+
+\section{IPv6}
+
+IPv6 to najnowsza wersja protokołu internetowego, która zapewnia większą przestrzeń adresową i poprawę funkcji w porównaniu do IPv4. IPv6 jest używany w nowoczesnych sieciach, aby zapewnić skalowalność i wydajność.
+
+\subsection{Zalety}
+\begin{itemize}
+    \item Większa przestrzeń adresowa.
+    \begin{itemize}
+        \item Rozwiązanie problemu wyczerpania adresów IPv4: IPv6 oferuje znacznie większą przestrzeń adresową ($2^{128}$ adresów), co pozwala na unikanie problemów związanych z wyczerpaniem adresów IP.
+        \item Możliwość podłączania większej liczby urządzeń: Dzięki większej przestrzeni adresowej, IPv6 umożliwia podłączenie znacznie większej liczby urządzeń, co jest kluczowe dla Internetu Rzeczy (IoT).
+    \end{itemize}
+    \item Lepsze wsparcie dla mobilności i bezpieczeństwa.
+    \begin{itemize}
+        \item Mobilność: IPv6 wspiera lepsze mechanizmy mobilności, co umożliwia płynne przemieszczanie się urządzeń między różnymi sieciami bez utraty połączenia.
+        \item Bezpieczeństwo: IPv6 ma wbudowane wsparcie dla IPsec, co zapewnia lepsze mechanizmy szyfrowania i uwierzytelniania, zwiększając bezpieczeństwo komunikacji.
+    \end{itemize}
+    \item Uproszczony nagłówek pakietu.
+    \begin{itemize}
+        \item Efektywność przetwarzania: Uproszczony nagłówek IPv6 pozwala na szybsze przetwarzanie pakietów przez routery, co poprawia wydajność sieci.
+        \item Redukcja obciążenia: Mniejsza liczba pól w nagłówku IPv6 zmniejsza obciążenie urządzeń sieciowych, co prowadzi do lepszej wydajności i mniejszego zużycia zasobów.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Wady}
+\begin{itemize}
+    \item Złożoność migracji z IPv4.
+    \begin{itemize}
+        \item Trudności migracyjne: Migracja z IPv4 do IPv6 może być skomplikowana i czasochłonna, wymagająca dokładnego planowania i koordynacji.
+        \item Koszty: Proces migracji może wiązać się z kosztami związanymi z aktualizacją sprzętu i oprogramowania oraz szkoleniem personelu.
+    \end{itemize}
+    \item Wymagania dotyczące wsparcia sprzętowego.
+    \begin{itemize}
+        \item Kompatybilność sprzętu: Wiele starszych urządzeń sieciowych może nie obsługiwać IPv6, co może wymagać ich wymiany lub modernizacji.
+        \item Koszty: Zakup nowego sprzętu, który obsługuje IPv6, może być kosztowny, szczególnie w dużych sieciach.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Zastosowanie w Topologii}
+W obecnej topologii IPv6 jest używany obok IPv4, co zapewnia skalowalność i przyszłościową kompatybilność sieci. Dzięki temu sieć może obsługiwać większą liczbę urządzeń i lepiej zarządzać zasobami. Wdrażanie IPv6 zapewnia również lepsze wsparcie dla mobilności i bezpieczeństwa, co jest kluczowe w nowoczesnych sieciach.
+
+\section{ACL (Access Control List)}
+
+ACL (Access Control List) to technologia używana do kontrolowania dostępu do zasobów sieciowych na podstawie adresów IP i innych kryteriów. ACL są stosowane na routerach i przełącznikach warstwy 3.
+
+\subsection{Zalety}
+\begin{itemize}
+    \item Precyzyjna kontrola dostępu.
+    \begin{itemize}
+        \item Granularność: ACL umożliwiają bardzo precyzyjne definiowanie, które urządzenia lub użytkownicy mogą mieć dostęp do określonych zasobów sieciowych, co zwiększa bezpieczeństwo.
+        \item Elastyczność: ACL pozwalają na tworzenie różnych reguł dostępu w zależności od potrzeb, co umożliwia elastyczne zarządzanie dostępem.
+    \end{itemize}
+    \item Poprawa bezpieczeństwa sieci.
+    \begin{itemize}
+        \item Blokowanie nieautoryzowanego dostępu: ACL mogą blokować ruch z nieautoryzowanych adresów IP, co chroni sieć przed atakami z zewnątrz.
+        \item Monitorowanie ruchu: ACL umożliwiają monitorowanie i logowanie ruchu sieciowego, co pomaga w wykrywaniu i analizowaniu potencjalnych zagrożeń.
+    \end{itemize}
+    \item Możliwość definiowania szczegółowych polityk dostępu.
+    \begin{itemize}
+        \item Polityki bezpieczeństwa: ACL pozwalają na wdrażanie szczegółowych polityk bezpieczeństwa, które określają, kto i w jaki sposób może korzystać z zasobów sieciowych.
+        \item Zarządzanie ruchem: Dzięki ACL można zarządzać ruchem sieciowym, priorytetować pewne typy ruchu lub ograniczać przepustowość dla innych, co poprawia wydajność sieci.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Wady}
+\begin{itemize}
+    \item Złożoność konfiguracji.
+    \begin{itemize}
+        \item Wymagana wiedza: Konfiguracja ACL wymaga zaawansowanej wiedzy na temat sieci, co może być wyzwaniem dla mniej doświadczonych administratorów.
+        \item Możliwość błędów: Błędna konfiguracja ACL może prowadzić do problemów z dostępnością i bezpieczeństwem sieci, co może być trudne do zdiagnozowania.
+    \end{itemize}
+    \item Możliwość degradacji wydajności przy dużej liczbie reguł.
+    \begin{itemize}
+        \item Obciążenie zasobów: Duża liczba reguł ACL może obciążać zasoby sprzętowe, co może prowadzić do degradacji wydajności sieci.
+        \item Koszty operacyjne: Zarządzanie dużą liczbą reguł ACL może być czasochłonne i kosztowne, wymagając regularnych aktualizacji i monitorowania.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Zastosowanie w Topologii}
+W obecnej topologii ACL są używane do kontrolowania dostępu do różnych części sieci. Dzięki temu sieć jest bardziej bezpieczna, a dostęp do zasobów jest precyzyjnie kontrolowany. ACL są skonfigurowane na routerach i przełącznikach warstwy 3, aby zapewnić granularną kontrolę dostępu i poprawić bezpieczeństwo sieci.
+
+% ********** Koniec rozdziału **********

@@ -1,0 +1,175 @@
+% ********** Rozdział 2 **********
+\chapter{Opis Infrastruktury}
+
+Infrastruktura sieci składa się z wielu VLAN-ów, przełączników i routerów skonfigurowanych do zarządzania różnymi działami i funkcjami. VLAN-y są segmentowane w zależności od działu lub funkcji, takich jak administracja, programiści, menedżerowie, ochrona, monitoring, serwery i goście. Każdy VLAN ma przypisane konkretne urządzenia i usługi. Przełączniki są skonfigurowane z EtherChannel dla redundancji i poprawy wydajności, natomiast routery obsługują routing między VLAN-ami i zapewniają dostęp do sieci zewnętrznych.
+
+\section{Lista VLAN-ów}
+
+\begin{table}[htbp]
+\centering
+\caption{Lista VLAN-ów}
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{VLAN ID} & \textbf{Nazwa VLAN}            & \textbf{Opis}                              \\ \hline
+10               & VLAN\_Admins                   & Zarząd i administracja, komputery i serwery FTP zarządu i administracji \\ \hline
+20               & VLAN\_Programmers              & Programiści, komputery programistów, serwer FTP i DHCP \\ \hline
+30               & VLAN\_Managers                 & Menedżerowie projektów, komputery, serwer FTP i DHCP \\ \hline
+40               & VLAN\_Security                 & Ochrona, komputery ochrony                \\ \hline
+50               & VLAN\_Monitoring               & Monitoring, kamery, serwer monitoringu, czujniki \\ \hline
+60               & VLAN\_Servers                  & Serwery deweloperskie 1 i 2, wspólny FTP  \\ \hline
+70               & VLAN\_Guests                   & Sieć Wi-Fi dla gości na parterze          \\ \hline
+80               & VLAN\_Guests2                  & Sieć Wi-Fi dla gości na piętrze           \\ \hline
+95               & VLAN\_Black\_hole              & VLAN dla nieużywanych portów (black hole) \\ \hline
+\end{tabular}
+\end{table}
+\newpage
+
+\section{Tabela Dostępu Między VLAN-ami}
+
+Poniższa tabela przedstawia dostępność między poszczególnymi VLAN-ami w sieci. "Pełny dostęp" oznacza, że VLAN źródłowy ma pełny dostęp do zasobów VLAN-u docelowego, "Ograniczony dostęp" oznacza, że dostęp jest ograniczony, a "Brak dostępu" oznacza, że dostęp jest zablokowany.
+
+\begin{table}[htbp]
+\centering
+\caption{Tabela Dostępu Między VLAN-ami (Część 1)}
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{VLAN źródłowy} & \textbf{VLAN docelowy} & \textbf{Typ dostępu} \\ \hline
+VLAN 10 (Admins)       & VLAN 20 (Programiści)  & Pełny dostęp         \\ \hline
+VLAN 10 (Admins)       & VLAN 30 (Menedżerowie) & Pełny dostęp         \\ \hline
+VLAN 10 (Admins)       & VLAN 40 (Ochrona)      & Brak dostępu         \\ \hline
+VLAN 10 (Admins)       & VLAN 50 (Monitoring)   & Pełny dostęp         \\ \hline
+VLAN 10 (Admins)       & VLAN 60 (Serwery)      & Pełny dostęp         \\ \hline
+VLAN 10 (Admins)       & VLAN 70 (Goście)       & Brak dostępu         \\ \hline
+VLAN 10 (Admins)       & VLAN 80 (Goście2)      & Brak dostępu         \\ \hline
+VLAN 10 (Admins)       & VLAN 95 (Black Hole)   & Brak dostępu         \\ \hline
+VLAN 20 (Programiści)  & VLAN 10 (Admins)       & Ograniczony dostęp   \\ \hline
+VLAN 20 (Programiści)  & VLAN 30 (Menedżerowie) & Ograniczony dostęp   \\ \hline
+VLAN 20 (Programiści)  & VLAN 40 (Ochrona)      & Brak dostępu         \\ \hline
+VLAN 20 (Programiści)  & VLAN 50 (Monitoring)   & Ograniczony dostęp   \\ \hline
+VLAN 20 (Programiści)  & VLAN 60 (Serwery)      & Pełny dostęp         \\ \hline
+VLAN 20 (Programiści)  & VLAN 70 (Goście)       & Brak dostępu         \\ \hline
+VLAN 20 (Programiści)  & VLAN 80 (Goście2)      & Brak dostępu         \\ \hline
+VLAN 20 (Programiści)  & VLAN 95 (Black Hole)   & Brak dostępu         \\ \hline
+VLAN 30 (Menedżerowie) & VLAN 10 (Admins)       & Ograniczony dostęp   \\ \hline
+VLAN 30 (Menedżerowie) & VLAN 20 (Programiści)  & Ograniczony dostęp   \\ \hline
+VLAN 30 (Menedżerowie) & VLAN 40 (Ochrona)      & Brak dostępu         \\ \hline
+VLAN 30 (Menedżerowie) & VLAN 50 (Monitoring)   & Ograniczony dostęp   \\ \hline
+VLAN 30 (Menedżerowie) & VLAN 60 (Serwery)      & Pełny dostęp         \\ \hline
+VLAN 30 (Menedżerowie) & VLAN 70 (Goście)       & Brak dostępu         \\ \hline
+VLAN 30 (Menedżerowie) & VLAN 80 (Goście2)      & Brak dostępu         \\ \hline
+VLAN 30 (Menedżerowie) & VLAN 95 (Black Hole)   & Brak dostępu         \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{Tabela Dostępu Między VLAN-ami (Część 2)}
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{VLAN źródłowy} & \textbf{VLAN docelowy} & \textbf{Typ dostępu} \\ \hline
+VLAN 40 (Ochrona)      & VLAN 10 (Admins)       & Brak dostępu         \\ \hline
+VLAN 40 (Ochrona)      & VLAN 20 (Programiści)  & Brak dostępu         \\ \hline
+VLAN 40 (Ochrona)      & VLAN 30 (Menedżerowie) & Brak dostępu         \\ \hline
+VLAN 40 (Ochrona)      & VLAN 50 (Monitoring)   & Ograniczony dostęp   \\ \hline
+VLAN 40 (Ochrona)      & VLAN 60 (Serwery)      & Brak dostępu         \\ \hline
+VLAN 40 (Ochrona)      & VLAN 70 (Goście)       & Brak dostępu         \\ \hline
+VLAN 40 (Ochrona)      & VLAN 80 (Goście2)      & Brak dostępu         \\ \hline
+VLAN 40 (Ochrona)      & VLAN 95 (Black Hole)   & Brak dostępu         \\ \hline
+VLAN 50 (Monitoring)   & VLAN 10 (Admins)       & Pełny dostęp         \\ \hline
+VLAN 50 (Monitoring)   & VLAN 20 (Programiści)  & Ograniczony dostęp   \\ \hline
+VLAN 50 (Monitoring)   & VLAN 30 (Menedżerowie) & Ograniczony dostęp   \\ \hline
+VLAN 50 (Monitoring)   & VLAN 40 (Ochrona)      & Ograniczony dostęp   \\ \hline
+VLAN 50 (Monitoring)   & VLAN 60 (Serwery)      & Pełny dostęp         \\ \hline
+VLAN 50 (Monitoring)   & VLAN 70 (Goście)       & Brak dostępu         \\ \hline
+VLAN 50 (Monitoring)   & VLAN 80 (Goście2)      & Brak dostępu         \\ \hline
+VLAN 50 (Monitoring)   & VLAN 95 (Black Hole)   & Brak dostępu         \\ \hline
+VLAN 60 (Serwery)      & VLAN 10 (Admins)       & Pełny dostęp         \\ \hline
+VLAN 60 (Serwery)      & VLAN 20 (Programiści)  & Pełny dostęp         \\ \hline
+VLAN 60 (Serwery)      & VLAN 30 (Menedżerowie) & Pełny dostęp         \\ \hline
+VLAN 60 (Serwery)      & VLAN 40 (Ochrona)      & Brak dostępu         \\ \hline
+VLAN 60 (Serwery)      & VLAN 50 (Monitoring)   & Pełny dostęp         \\ \hline
+VLAN 60 (Serwery)      & VLAN 70 (Goście)       & Brak dostępu         \\ \hline
+VLAN 60 (Serwery)      & VLAN 80 (Goście2)      & Brak dostępu         \\ \hline
+VLAN 60 (Serwery)      & VLAN 95 (Black Hole)   & Brak dostępu         \\ \hline
+VLAN 70 (Goście)       & VLAN 10 (Admins)       & Brak dostępu         \\ \hline
+VLAN 70 (Goście)       & VLAN 20 (Programiści)  & Brak dostępu         \\ \hline
+VLAN 70 (Goście)       & VLAN 30 (Menedżerowie) & Brak dostępu         \\ \hline
+VLAN 70 (Goście)       & VLAN 40 (Ochrona)      & Brak dostępu         \\ \hline
+VLAN 70 (Goście)       & VLAN 50 (Monitoring)   & Brak dostępu         \\ \hline
+VLAN 70 (Goście)       & VLAN 60 (Serwery)      & Brak dostępu         \\ \hline
+VLAN 70 (Goście)       & VLAN 80 (Goście2)      & Brak dostępu         \\ \hline
+VLAN 70 (Goście)       & VLAN 95 (Black Hole)   & Brak dostępu         \\ \hline
+VLAN 80 (Goście2)      & VLAN 10 (Admins)       & Brak dostępu         \\ \hline
+VLAN 80 (Goście2)      & VLAN 20 (Programiści)  & Brak dostępu         \\ \hline
+VLAN 80 (Goście2)      & VLAN 30 (Menedżerowie) & Brak dostępu         \\ \hline
+VLAN 80 (Goście2)      & VLAN 40 (Ochrona)      & Brak dostępu         \\ \hline
+VLAN 80 (Goście2)      & VLAN 50 (Monitoring)   & Brak dostępu         \\ \hline
+VLAN 80 (Goście2)      & VLAN 60 (Serwery)      & Brak dostępu         \\ \hline
+VLAN 80 (Goście2)      & VLAN 70 (Goście)       & Brak dostępu         \\ \hline
+VLAN 80 (Goście2)      & VLAN 95 (Black Hole)   & Brak dostępu         \\ \hline
+VLAN 95 (Black Hole)   & VLAN 10 (Admins)       & Brak dostępu         \\ \hline
+VLAN 95 (Black Hole)   & VLAN 20 (Programiści)  & Brak dostępu         \\ \hline
+VLAN 95 (Black Hole)   & VLAN 30 (Menedżerowie) & Brak dostępu         \\ \hline
+VLAN 95 (Black Hole)   & VLAN 40 (Ochrona)      & Brak dostępu         \\ \hline
+VLAN 95 (Black Hole)   & VLAN 50 (Monitoring)   & Brak dostępu         \\ \hline
+VLAN 95 (Black Hole)   & VLAN 60 (Serwery)      & Brak dostępu         \\ \hline
+VLAN 95 (Black Hole)   & VLAN 70 (Goście)       & Brak dostępu         \\ \hline
+VLAN 95 (Black Hole)   & VLAN 80 (Goście2)      & Brak dostępu         \\ \hline
+\end{tabular}
+\end{table}
+\newpage
+
+\section{Tabela Przełączników z Zastosowanymi Technologiami}
+
+Poniższa tabela przedstawia listę przełączników używanych w sieci oraz technologie, które są na nich zastosowane. EtherChannel jest używany do zwiększenia przepustowości
+
+\begin{table}[htbp]
+\centering
+\caption{Tabela Przełączników z Zastosowanymi Technologiami}
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Przełącznik} & \textbf{Zastosowane Technologie}       & \textbf{EtherChannel} \\ \hline
+Przełącznik 1        & VLAN, Spanning-Tree, PortFast, Trunk, EtherChannel & Tak \\ \hline
+Przełącznik 2        & VLAN, Spanning-Tree, PortFast, Trunk, EtherChannel & Tak \\ \hline
+Przełącznik 3        & VLAN, Spanning-Tree, PortFast, Trunk, EtherChannel & Tak \\ \hline
+Przełącznik 4        & VLAN, Spanning-Tree, PortFast, Trunk, EtherChannel & Tak \\ \hline
+Przełącznik 5        & VLAN, Spanning-Tree, PortFast, Trunk & Nie \\ \hline
+Przełącznik 6        & VLAN, Spanning-Tree, PortFast, Trunk & Nie \\ \hline
+Przełącznik 7        & VLAN, Spanning-Tree, PortFast, Trunk & Nie \\ \hline
+Przełącznik 8        & VLAN, Spanning-Tree, PortFast, Trunk & Nie \\ \hline
+Przełącznik 9        & VLAN, Spanning-Tree, PortFast, Trunk & Nie \\ \hline
+Przełącznik 10       & VLAN, Spanning-Tree, PortFast, Trunk & Nie \\ \hline
+Przełącznik 11       & VLAN, Spanning-Tree, PortFast, Trunk & Nie \\ \hline
+Przełącznik 12       & VLAN, Spanning-Tree, PortFast, Trunk & Nie \\ \hline
+Przełącznik 14       & VLAN, Spanning-Tree, PortFast, Trunk & Nie \\ \hline
+Przełącznik 15       & VLAN, Spanning-Tree, PortFast, Trunk & Nie \\ \hline
+Przełącznik 16       & VLAN, Spanning-Tree, PortFast, Trunk & Nie \\ \hline
+Przełącznik 17       & VLAN, Spanning-Tree, PortFast, Trunk & Nie \\ \hline
+Przełącznik 18       & VLAN, Spanning-Tree, PortFast, Trunk & Nie \\ \hline
+Przełącznik 19       & VLAN, Spanning-Tree, PortFast, Trunk & Nie \\ \hline
+Przełącznik 20       & VLAN, Spanning-Tree, PortFast, Trunk & Nie \\ \hline
+Przełącznik 21       & VLAN, Spanning-Tree, PortFast, Trunk & Nie \\ \hline
+Przełącznik 88       & VLAN, Spanning-Tree, PortFast, Trunk & Nie \\ \hline
+\end{tabular}
+\end{table}
+
+\section{Tabela Routerów z Zastosowanymi Technologiami}
+
+Poniższa tabela przedstawia listę routerów używanych w sieci oraz technologie, które są na nich zastosowane. Routery obsługują m.in. protokoły routingu OSPF i HSRP, a także routing między VLAN-ami oraz IPv6.
+
+\begin{table}[htbp]
+\centering
+\caption{Tabela Routerów z Zastosowanymi Technologiami}
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Router} & \textbf{Zastosowane Technologie}             \\ \hline
+Router 1        & OSPF, HSRP, Routing między VLAN-ami, IPv6, ACL    \\ \hline
+Router 2        & OSPF, HSRP, Routing między VLAN-ami, IPv6, ACL    \\ \hline
+Router 3        & OSPF, HSRP, Routing między VLAN-ami, IPv6, ACL    \\ \hline
+Router 4        & OSPF, HSRP, Routing między VLAN-ami, IPv6, ACL    \\ \hline
+Router ISP1     & OSPF, Routing między VLAN-ami, IPv6, ACL     \\ \hline
+Router ISP2     & OSPF, Routing między VLAN-ami, IPv6, ACL     \\ \hline
+\end{tabular}
+\end{table}
+
+% ********** Koniec rozdziału **********
