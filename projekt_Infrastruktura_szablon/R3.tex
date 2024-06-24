@@ -51,6 +51,8 @@ VLAN (Virtual Local Area Network) to technologia umożliwiająca logiczne segmen
 \subsection{Zastosowanie w Topologii}
 W obecnej topologii VLAN-y są używane do separacji ruchu sieciowego między różnymi działami firmy. Dzięki temu każdy dział działa w oddzielnej przestrzeni, co zwiększa bezpieczeństwo i wydajność sieci. Na przykład, VLAN 10 jest przypisany do administracji, VLAN 20 do programistów, a VLAN 30 do menedżerów, co pozwala na lepsze zarządzanie zasobami sieciowymi i kontrolę dostępu.
 
+\newpage
+
 \section{Spanning-Tree Protocol (STP)}
 
 Spanning-Tree Protocol (STP) to protokół zapobiegający powstawaniu pętli w sieciach z redundancją połączeń. STP automatycznie wykrywa i blokuje redundantne ścieżki, utrzymując jednocześnie dostępność sieci.
@@ -410,5 +412,45 @@ ACL (Access Control List) to technologia używana do kontrolowania dostępu do z
 
 \subsection{Zastosowanie w Topologii}
 W obecnej topologii ACL są używane do kontrolowania dostępu do różnych części sieci. Dzięki temu sieć jest bardziej bezpieczna, a dostęp do zasobów jest precyzyjnie kontrolowany. ACL są skonfigurowane na routerach i przełącznikach warstwy 3, aby zapewnić granularną kontrolę dostępu i poprawić bezpieczeństwo sieci.
+
+\section{Port Security}
+
+Port Security to funkcja przełączników, która umożliwia ograniczenie dostępu do portów na podstawie adresów MAC urządzeń. Dzięki temu można zapobiec nieautoryzowanemu dostępowi do sieci.
+
+\subsection{Zalety}
+\begin{itemize}
+    \item Poprawa bezpieczeństwa sieci poprzez ograniczenie dostępu.
+    \begin{itemize}
+        \item Ochrona przed nieautoryzowanymi urządzeniami: Port Security pozwala na ograniczenie liczby urządzeń, które mogą być podłączone do portu, co zapobiega podłączaniu nieautoryzowanych urządzeń.
+        \item Kontrola dostępu: Port Security umożliwia przypisanie konkretnych adresów MAC do portów, co pozwala na precyzyjną kontrolę dostępu do sieci.
+    \end{itemize}
+    \item Ochrona przed atakami typu MAC flooding.
+    \begin{itemize}
+        \item Zapobieganie atakom: Port Security chroni sieć przed atakami typu MAC flooding, które polegają na zalewaniu przełącznika fałszywymi adresami MAC w celu wyczerpania jego tablicy MAC.
+        \item Zwiększenie stabilności sieci: Dzięki ochronie przed atakami, Port Security przyczynia się do zwiększenia stabilności i niezawodności sieci.
+    \end{itemize}
+    \item Łatwość konfiguracji i zarządzania.
+    \begin{itemize}
+        \item Prosta konfiguracja: Konfiguracja Port Security jest stosunkowo prosta i może być łatwo wdrożona przez administratorów sieci.
+        \item Monitorowanie i alarmowanie: Port Security umożliwia monitorowanie nieautoryzowanych prób dostępu i generowanie alarmów, co ułatwia zarządzanie bezpieczeństwem sieci.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Wady}
+\begin{itemize}
+    \item Możliwość blokowania autoryzowanych urządzeń.
+    \begin{itemize}
+        \item Ryzyko fałszywych alarmów: Port Security może czasami blokować autoryzowane urządzenia, jeśli ich adresy MAC nie zostały poprawnie skonfigurowane.
+        \item Utrudnienia w diagnostyce: Problemy związane z Port Security mogą być trudne do zdiagnozowania i naprawienia, co może prowadzić do przestojów.
+    \end{itemize}
+    \item Konieczność regularnej aktualizacji konfiguracji.
+    \begin{itemize}
+        \item Zmiany w sieci: W miarę dodawania nowych urządzeń do sieci, konfiguracja Port Security musi być regularnie aktualizowana, co może być czasochłonne.
+        \item Koszty operacyjne: Regularne aktualizacje konfiguracji mogą zwiększać koszty operacyjne, szczególnie w dużych sieciach.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Zastosowanie w Topologii}
+W obecnej topologii Port Security jest używany na przełącznikach, aby ograniczyć dostęp do portów na podstawie adresów MAC urządzeń. Dzięki temu sieć jest bardziej bezpieczna i chroniona przed nieautoryzowanym dostępem. Port Security jest skonfigurowany na portach przełączników, które są podłączone do komputerów i innych urządzeń końcowych.
 
 % ********** Koniec rozdziału **********

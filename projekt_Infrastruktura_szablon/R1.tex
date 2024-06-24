@@ -25,8 +25,27 @@ Segmentacja sieci została zrealizowana przy użyciu VLAN-ów (Virtual Local Are
 \section{Opis Pomieszczeń i Urządzeń w Topologii Sieci}
 Diagram sieciowy przedstawia szczegółowy układ pomieszczeń w budynku firmy oraz urządzenia sieciowe przypisane do każdego pomieszczenia.
 
+
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Pietro.png}
+    \caption{Diagram sieciowy - Pietro}
+    \label{fig:pietro}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Parter.png}
+    \caption{Diagram sieciowy - Parter}
+    \label{fig:parter}
+\end{figure}
+
+\newpage
+
 \subsection{Pomieszczenia Programistów}
 Pomieszczenia programistów są podzielone na cztery segmenty, z których każdy przypisany jest do VLAN 20. W każdym pomieszczeniu znajdują się komputery programistów oraz serwery FTP i DHCP. Dodatkowo, w każdym pomieszczeniu znajduje się smoke detector (czujnik dymu), co jest przykładem zastosowania urządzeń IoT (Internet of Things) do zwiększenia bezpieczeństwa w budynku.
+
 
 \subsection{Pomieszczenie Menedżerów Projektów}
 Pomieszczenie menedżerów projektów przypisane jest do VLAN 30. Znajdują się tam komputery menedżerów oraz serwery FTP i DHCP, które umożliwiają zarządzanie projektami i współpracę w ramach zespołu.
@@ -88,17 +107,17 @@ W celu zapewnienia bezpieczeństwa sieciowego, każde urządzenie sieciowe zosta
         Switch21 & Switch21 \\ \hline
     \end{tabular}
 \end{table}
-
+\newpage
 \section{SSID i Hasła do Sieci Wi-Fi}
 Sieci Wi-Fi w firmie zostały skonfigurowane z odpowiednimi SSID i hasłami, zapewniając dostęp dla gości na różnych poziomach budynku.
 \begin{itemize}
-    \item \textbf{SSID: GuestWiFiParter, VLAN 70}
+    \item \textbf{SSID: Parter, VLAN 70}
     \begin{itemize}
-        \item Hasło: \textit{GuestParter123}
+        \item Hasło: \textit{Parter!\@\#\$ (WPA2 Personal)}
     \end{itemize}
-    \item \textbf{SSID: GuestWiFiPietro, VLAN 80}
+    \item \textbf{SSID: Pietro, VLAN 80}
     \begin{itemize}
-        \item Hasło: \textit{GuestPietro123}
+        \item Hasło: \textit{Pietro!\@\#\$\% (WPA2 Personal)}
     \end{itemize}
 \end{itemize}
 
